@@ -1,0 +1,38 @@
+name: 'Dist Tag Update'
+
+on:
+  workflow_dispatch: # Put here!!
+    inputs:
+      name:
+        type: choice
+        description:
+          Action type to specify how dist tag should be updated. "update" to create or update dist
+          tag by specific option. "remove" to remove dist tag from all packages.
+        options:
+          - update
+          - remove
+      dist-tag:
+        required: true
+        description: Dist tag name considering to be changed
+      version:
+        description:
+
+jobs:
+  release-major:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: Workday/canvas-kit-actions/install@v1
+        with:
+          node_version: 16.x
+
+      - name: Check packages
+        run: node utils/dist-tag.mjs
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_CI_PUBLISH_TOKEN }}
+          DIST_TAG: ${{ inputs.dist-tag }}
+          VERSION: ${{ inputs.version }}
+          ACTION_TYPE: ${{ inputs.dist-tag }}
