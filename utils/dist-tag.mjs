@@ -78,8 +78,7 @@ exec('lerna ls --json')
 
     if (ACTION_TYPE === 'update') {
       updatePackageDistTags(packages, VERSION, DIST_TAG);
-    }
-    if (ACTION_TYPE === 'remove') {
+    } else if (ACTION_TYPE === 'remove') {
       removePackageDistTags(packages, DIST_TAG);
     } else {
       console.log('Incorrect action type entered!');

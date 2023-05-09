@@ -1,6 +1,9 @@
 name: 'Dist Tag Update'
 
 on:
+  push:
+    branches:
+      - dist-tag-action
   workflow_dispatch: # Put here!!
     inputs:
       name:
@@ -33,6 +36,6 @@ jobs:
         run: node utils/dist-tag.mjs
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_CI_PUBLISH_TOKEN }}
-          DIST_TAG: ${{ inputs.dist-tag }}
-          VERSION: ${{ inputs.version }}
-          ACTION_TYPE: ${{ inputs.dist-tag }}
+          DIST_TAG: 'test-tag'
+          VERSION: '8.6.4'
+          ACTION_TYPE: 'update'
