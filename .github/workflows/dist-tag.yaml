@@ -37,5 +37,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_CI_PUBLISH_TOKEN }}
           DIST_TAG: 'test-tag'
-          VERSION: '8.6.4'
-          ACTION_TYPE: 'update'
+          ACTION_TYPE: 'remove'
