@@ -172,7 +172,7 @@ export const useTabsItem = composeHooks(
       type: 'button' as const,
       role: 'tab' as const,
       'aria-selected': selected,
-      'aria-controls': `tabpanel-${state.id}-${name}`,
+      'aria-controls': slugify(`tabpanel-${state.id}-${name}`),
     };
   }),
   useListItemSelect,
